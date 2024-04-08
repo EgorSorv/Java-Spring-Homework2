@@ -16,6 +16,7 @@ public class UserRepository {
         this.jdbc = jdbc;
     }
 
+    // вывод всех пользователей
     public List<User> findAll() {
         String sql = "SELECT * FROM userTable";
 
@@ -30,9 +31,16 @@ public class UserRepository {
         return jdbc.query(sql, userRowMapper);
     }
 
+    // создание нового пользователя
     public User save(User user) {
         String sql = "INSERT INTO userTable (firstName,lastName) VALUES ( ?, ?)";
         jdbc.update(sql, user.getFirstName(), user.getLastName());
         return  user;
+    }
+
+    // удаление пользователя по id
+    public void deleteById(int id) {
+        String sql = "DELETE FROM userTable WHERE id = ?";
+        jdbc.update(sql, id);
     }
 }

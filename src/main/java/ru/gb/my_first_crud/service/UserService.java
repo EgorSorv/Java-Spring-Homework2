@@ -15,11 +15,18 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    // вывод всех пользователей
     public List<User> findAll() {
         return userRepository.findAll();
     }
 
+    // создание пользователя
     public User saveUser(User user) {
         return userRepository.save(user);
+    }
+
+    // удаление пользователя
+    public void deleteById(int id) {
+        userRepository.deleteById(id);
     }
 }
